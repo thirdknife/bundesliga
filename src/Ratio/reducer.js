@@ -21,7 +21,8 @@ function reducer(state = initialState, action) {
 
             const { allTeamsWithDefaultRatio } = action.result;
 
-            return state.set('teamRatios', Immutable.fromJS(allTeamsWithDefaultRatio));
+            return state.set('teamRatios', Immutable.fromJS(allTeamsWithDefaultRatio))
+                .set('isLoading', false);
         }
 
         default:
