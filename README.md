@@ -13,3 +13,4 @@
 - Using Redux for state management.
 - Using fetch isomorphic to consume the Match API.
 - Code is modular and is divided per page.
+- [Demo at!](https://thirdknife.github.io/bundesliga/static/index.html)
