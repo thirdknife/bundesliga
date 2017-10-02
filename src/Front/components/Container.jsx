@@ -21,7 +21,7 @@ class Container extends Component {
 
     renderDate(matchDate){
         const date = new Date(matchDate);
-        const month = date.getMonth();
+        const month = date.getMonth()+1;
         const day   = date.getDate();
         const year  = date.getFullYear();
         return(<span className={styles.time}>{month}/{day}/{year}</span>)
