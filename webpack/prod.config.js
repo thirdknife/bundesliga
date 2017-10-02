@@ -21,7 +21,7 @@ const cleanOptions = {
 };
 
 module.exports = {
-    devtool: 'source-map',
+    // devtool: 'source-map',
     context: path.resolve(__dirname, '..'),
     entry,
     output: {
