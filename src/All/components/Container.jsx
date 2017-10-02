@@ -46,37 +46,44 @@ class Container extends Component {
     renderAllMatches(){
 
         const { allMatches, isLoading } = this.props;
-        console.log('isLoading', isLoading);
         const pendingMatches = allMatches.filter(m => !m.MatchIsFinished);
 
-        return (
-            <ul className={styles.schedule}>
-                <Link to={`Front`}>Next Game Day Matches</Link>
-                <Link to={`All`}>All Matches</Link>
-                <Link to={`Ratio`}>Win / Loss Ratio</Link>
-                {allMatches.map( match => {
+            if(isLoading){
+                const imgSrc = './spinner.svg';
 
-                    const matchID   = match.get('MatchID');
-                    const matchDate = match.get('MatchDateTimeUTC');
-                    const team1Name = match.getIn(['Team1','TeamName']);
-                    const team1Logo = match.getIn(['Team1','TeamIconUrl']);
-                    const team2Name = match.getIn(['Team2','TeamName']);
-                    const team2Logo = match.getIn(['Team2','TeamIconUrl']);
-                    const matchTime = match.get('MatchDateTimeUTC');
-                    const stadium   = match.getIn(['Location','LocationStadium']);
+                return(
+                    <div><img src={imgSrc}/></div>
+                )
+            }else{
+                return (
+                    <ul className={styles.schedule}>
+                        <Link to={`Front`} activeStyle={{ color: 'black' }}>Next Game Day Matches</Link>
+                        <Link to={`All`} activeStyle={{ color: 'black' }}>All Matches</Link>
+                        <Link to={`Ratio`} activeStyle={{ color: 'black' }}>Win / Loss Ratio</Link>
+                        {allMatches.map( match => {
 
-                    return(
-                        <li className={styles.fixture} key={matchID}>
-                            {this.renderDate(matchDate)}
-                            {this.renderTeam(team1Name, team1Logo, team2Name, team2Logo)}
-                            {this.renderMatchTime(matchTime)}
-                            {this.renderStadium(stadium)}
-                        </li>
-                    )
-                })}
+                            const matchID   = match.get('MatchID');
+                            const matchDate = match.get('MatchDateTimeUTC');
+                            const team1Name = match.getIn(['Team1','TeamName']);
+                            const team1Logo = match.getIn(['Team1','TeamIconUrl']);
+                            const team2Name = match.getIn(['Team2','TeamName']);
+                            const team2Logo = match.getIn(['Team2','TeamIconUrl']);
+                            const matchTime = match.get('MatchDateTimeUTC');
+                            const stadium   = match.getIn(['Location','LocationStadium']);
 
-            </ul>
-        )
+                            return(
+                                <li className={styles.fixture} key={matchID}>
+                                    {this.renderDate(matchDate)}
+                                    {this.renderTeam(team1Name, team1Logo, team2Name, team2Logo)}
+                                    {this.renderMatchTime(matchTime)}
+                                    {this.renderStadium(stadium)}
+                                </li>
+                            )
+                        })}
+
+                    </ul>
+                )
+            }
     }
 
     render() {

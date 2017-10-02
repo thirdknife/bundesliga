@@ -17,15 +17,15 @@ function reducer(state = initialState, action) {
             return state.set('isLoading', true);
         }
 
-    case a.REQUEST_ALL_MATCHES_SUCCESS: {
+        case a.REQUEST_ALL_MATCHES_SUCCESS: {
 
-        const { allMatches } = action.result;
+            const { allMatches } = action.result;
 
-        return state.set('allMatches', Immutable.fromJS(allMatches))
-            .set('isLoading', false);
-    }
+            return state.set('allMatches', Immutable.fromJS(allMatches))
+                .set('isLoading', false);
+        }
 
-    default:
-        return state;
+        default:
+            return state;
     }
 }

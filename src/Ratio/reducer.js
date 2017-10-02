@@ -3,6 +3,7 @@ import * as a from './actionTypes';
 
 const initialState = Immutable.fromJS({
     teamRatios: {},
+    isLoading: true
 });
 
 export default
@@ -12,14 +13,18 @@ function reducer(state = initialState, action) {
 
     switch(type) {
 
-    case a.REQUEST_RATIO_DATA_SUCCESS: {
+        case a.REQUEST_RATIO_DATA : {
+            return state.set('isLoading', true);
+        }
 
-        const { allTeamsWithDefaultRatio } = action.result;
+        case a.REQUEST_RATIO_DATA_SUCCESS: {
 
-        return state.set('teamRatios', Immutable.fromJS(allTeamsWithDefaultRatio));
-    }
+            const { allTeamsWithDefaultRatio } = action.result;
 
-    default:
-        return state;
+            return state.set('teamRatios', Immutable.fromJS(allTeamsWithDefaultRatio));
+        }
+
+        default:
+            return state;
     }
 }

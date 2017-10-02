@@ -5,6 +5,7 @@ const initialState = Immutable.fromJS({
     currentGroupMatches: {},
     nextGroupMatches: {},
     currentGroup: -1,
+    isLoading: true
 });
 
 export default
@@ -14,16 +15,21 @@ function reducer(state = initialState, action) {
 
     switch(type) {
 
-    case a.REQUEST_MATCH_DATA_SUCCESS: {
+        case a.REQUEST_MATCH_DATA : {
+            return state.set('isLoading', true);
+        }
 
-        const { currentGroup, currentGroupMatches, nextGroupMatches } = action.result;
+        case a.REQUEST_MATCH_DATA_SUCCESS: {
 
-        return state.set('currentGroup', currentGroup)
-            .set('nextGroupMatches', Immutable.fromJS(nextGroupMatches))
-            .set('currentGroupMatches', Immutable.fromJS(currentGroupMatches));
-    }
+            const { currentGroup, currentGroupMatches, nextGroupMatches } = action.result;
 
-    default:
-        return state;
+            return state.set('currentGroup', currentGroup)
+                .set('nextGroupMatches', Immutable.fromJS(nextGroupMatches))
+                .set('isLoading', false)
+                .set('currentGroupMatches', Immutable.fromJS(currentGroupMatches));
+        }
+
+        default:
+            return state;
     }
 }
