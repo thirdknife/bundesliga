@@ -1,4 +1,4 @@
-# bundesliga
+# Installation
 
 - Clone repo `git clone https://github.com/thirdknife/bundesliga`
 - Run `npm install`
@@ -7,7 +7,7 @@
 - cd into static and run http-server using `http-server`
 - Index page will be served at `http://127.0.0.1:808`
 
-#Thinking
+# Thinking
 - I have used JavaScript to solve the problem. JavaScript tooling to write client side and server is great.
 - Selected React for writing the front end application.
 - Using Redux for state management.
