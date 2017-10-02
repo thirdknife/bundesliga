@@ -1,10 +1,9 @@
 {
-  "name": "quixelsuite",
+  "name": "bl1",
   "version": "0.0.1",
-  "description": "Quixel Suite 3",
+  "description": "Bundesliga Stats",
   "repository": {
-    "type": "git",
-    "url": "https://nofelmahmood@bitbucket.org/quixeltools/quixel-suite.git"
+    "type": "git"
   },
   "main": "index.js",
   "scripts": {
@@ -32,11 +31,9 @@
     }
   },
   "keywords": [
-    "3",
-    "quixel",
-    "suite"
+    "football"
   ],
-  "author": "Nofel Mahmood",
+  "author": "Shakeel",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.4.1",
@@ -102,7 +99,6 @@
     "node-fetch": "^1.7.2",
     "node-sass": "^3.8.0",
     "onecolor": "^3.0.4",
-    "photoshop-dom-event": "git+https://github.com/thirdknife/photoshop-dom-event.git",
     "ramda": "^0.22.1",
     "react": "^15.3.1",
     "react-addons-css-transition-group": "^15.2.1",
