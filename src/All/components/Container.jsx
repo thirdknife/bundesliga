@@ -24,7 +24,7 @@ class Container extends Component {
         const month = date.getMonth();
         const day   = date.getDate();
         const year  = date.getFullYear();
-        return(<span className={styles.time}>{month}/{day}/{year}</span>)
+        return(<span className={styles.time}>{month+1}/{day}/{year}</span>)
     }
 
     renderTeam(teamName, teamLogo, team2Name, team2Logo){
