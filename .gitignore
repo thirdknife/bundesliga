@@ -1,0 +1,6 @@
+.*
+**.html
+!/.gitignore
+Shared/core/presets
+node_modules/
+static/

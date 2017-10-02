@@ -1,0 +1,14 @@
+@mixin animation($value) {
+    -webkit-animation: $value;
+    animation: $value;
+}
+
+@mixin moveX($value) {
+    left: $value;
+    transform: translate(-($value), 0);
+}
+
+@mixin moveY($value) {
+    top: $value;
+    transform: translate(0, -($value));
+}

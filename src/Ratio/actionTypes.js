@@ -1,0 +1,7 @@
+import { NAME } from './constants';
+
+export const REQUEST_RATIO_DATA         = `${NAME}/REQUEST_RATIO_DATA`;
+export const REQUEST_RATIO_DATA_SUCCESS = `${NAME}/REQUEST_RATIO_DATA_SUCCESS`;
+export const REQUEST_RATIO_DATA_FAILURE = `${NAME}/REQUEST_RATIO_DATA_FAILURE`;
+
+

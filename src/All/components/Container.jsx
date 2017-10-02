@@ -1,0 +1,92 @@
+import React from 'react';
+import _ from 'underscore';
+import path from 'path';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router';
+
+import * as actions from '../actions';
+import styles from './Container.scss';
+import { props } from '../selectors';
+
+const { Component } = React;
+
+class Container extends Component {
+
+    componentWillMount(){
+
+        const { dispatch } = this.props;
+
+        dispatch(actions.requestData());
+    }
+
+    renderDate(matchDate){
+        const date = new Date(matchDate);
+        const month = date.getMonth();
+        const day   = date.getDate();
+        const year  = date.getFullYear();
+        return(<span className={styles.time}>{month}/{day}/{year}</span>)
+    }
+
+    renderTeam(teamName, teamLogo, team2Name, team2Logo){
+        return(<div><span>{teamName} vs {team2Name}</span><span><img src={teamLogo}/> vs <img src={team2Logo}/></span></div>);
+    }
+
+    renderMatchTime(matchTime){
+
+        const date = new Date(matchTime);
+        const hour = date.getHours();
+        const minutes = date.getMinutes();
+        return(<span>{hour}:{minutes} UTC</span>);
+    }
+
+    renderStadium(stadium){
+        return(<span>{stadium}</span>)
+    }
+
+    renderAllMatches(){
+
+        const { allMatches, isLoading } = this.props;
+        console.log('isLoading', isLoading);
+        const pendingMatches = allMatches.filter(m => !m.MatchIsFinished);
+
+        return (
+            <ul className={styles.schedule}>
+                <Link to={`Front`}>Next Game Day Matches</Link>
+                <Link to={`All`}>All Matches</Link>
+                <Link to={`Ratio`}>Win / Loss Ratio</Link>
+                {allMatches.map( match => {
+
+                    const matchID   = match.get('MatchID');
+                    const matchDate = match.get('MatchDateTimeUTC');
+                    const team1Name = match.getIn(['Team1','TeamName']);
+                    const team1Logo = match.getIn(['Team1','TeamIconUrl']);
+                    const team2Name = match.getIn(['Team2','TeamName']);
+                    const team2Logo = match.getIn(['Team2','TeamIconUrl']);
+                    const matchTime = match.get('MatchDateTimeUTC');
+                    const stadium   = match.getIn(['Location','LocationStadium']);
+
+                    return(
+                        <li className={styles.fixture} key={matchID}>
+                            {this.renderDate(matchDate)}
+                            {this.renderTeam(team1Name, team1Logo, team2Name, team2Logo)}
+                            {this.renderMatchTime(matchTime)}
+                            {this.renderStadium(stadium)}
+                        </li>
+                    )
+                })}
+
+            </ul>
+        )
+    }
+
+    render() {
+        return (
+            <div className={styles.container}>
+                {this.renderAllMatches()}
+            </div>
+        );
+    }
+}
+
+export default
+withRouter(connect(props)(Container));
